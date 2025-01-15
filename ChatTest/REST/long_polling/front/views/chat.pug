@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  div.chat-container
+    h1.chat-header Chat Room: #{sender} & #{receiver} 
+    //- 채팅방 제목을 표시
+
+    div#messagesContainer
+      ul#messages 
+      //- 메시지 리스트를 표시할 영역
+
+    input#messageInput(type="text", placeholder="Type your message")
+    //- 메시지를 입력하는 입력창
+
+    button#sendButton.button-large Send 
+    //- 메시지 전송 버튼
+
+    button.button-large(onclick="location.href='/'") Home
+    //- 홈으로 돌아가는 버튼

@@ -1,0 +1,87 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ * 필요한 모듈들을 불러옵니다.
+ */
+var app = require('../app'); // Express 애플리케이션을 가져옵니다.
+var debug = require('debug')('front:server'); // 디버깅 도구
+var http = require('http'); // HTTP 서버를 생성하기 위한 모듈
+
+/**
+ * Get port from environment and store in Express.
+ * 환경 변수에서 포트를 가져오거나 기본값(3000)을 설정합니다.
+ */
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port); // 포트를 Express 애플리케이션에 설정
+
+/**
+ * Create HTTP server.
+ * HTTP 서버를 생성합니다.
+ */
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ * 서버를 실행하고 오류 처리와 상태를 로깅합니다.
+ */
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ * 포트를 숫자, 문자열, 또는 false로 변환합니다.
+ */
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    return val; // 숫자가 아니면 이름으로 된 파이프 반환
+  }
+
+  if (port >= 0) {
+    return port; // 유효한 포트 번호 반환
+  }
+
+  return false; // 유효하지 않은 경우 false 반환
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ * 서버 실행 중 오류가 발생하면 처리합니다.
+ */
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  switch (error.code) {
+    case 'EACCES': // 권한 문제
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE': // 포트 사용 중
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ * 서버가 성공적으로 실행되면 로그를 출력합니다.
+ */
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
