@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  //- 페이지 제목
+  h1 Chat Application
+  //- 채팅방으로 이동하기 위한 폼
+  form#loginForm(action="/chat", method="GET") 
+    //- 보내는 사람 입력 라벨
+    label(for="sender") Sender:
+    //- 보내는 사람 입력 필드
+    input#sender(type="text", name="sender", placeholder="Enter your ID", required)
+    br
+    br
+    //- 받는 사람 입력 라벨
+    label(for="receiver") Receiver:
+    //- 받는 사람 입력 필드
+    input#receiver(type="text", name="receiver", placeholder="Enter receiver ID", required)
+    br
+    br
+    //- 채팅방 입장 버튼
+    button(type="submit") Enter Chat Room
