@@ -1,0 +1,31 @@
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.db
+*.jre
+*.idea
+*.iml
+*.ipr
+
+# IntelliJ IDEA
+.idea/
+
+# VSCode
+.vscode/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Maven
+target/
+!target/classes/
+!target/test-classes/
+
+# Gradle
+
+# node_modules 폴더를 무시
+/front/node_modules/
