@@ -2,14 +2,14 @@ extends layout
 
 block content
   div.chat-container
-    h1.chat-header Chat Room: #{sender} & #{receiver} 
+    h1.chat-header 1:1 채팅방: #{sender} & #{receiver} 
     //- 채팅방 제목을 표시
 
     div#messagesContainer
       ul#messages 
       //- 메시지 리스트를 표시할 영역
 
-    input#messageInput(type="text", placeholder="Type your message")
+    input#messageInput(type="text", placeholder="채팅을 입력하세요요")
     //- 메시지를 입력하는 입력창
 
     button#sendButton.button-large Send 

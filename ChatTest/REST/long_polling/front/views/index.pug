@@ -2,20 +2,20 @@ extends layout
 
 block content
   //- 페이지 제목
-  h1 Chat Application
+  h1 1:1 채팅팅
   //- 채팅방으로 이동하기 위한 폼
   form#loginForm(action="/chat", method="GET") 
     //- 보내는 사람 입력 라벨
-    label(for="sender") Sender:
+    label(for="sender") 송신:
     //- 보내는 사람 입력 필드
-    input#sender(type="text", name="sender", placeholder="Enter your ID", required)
+    input#sender(type="text", name="sender", placeholder="본인 아이디", required)
     br
     br
     //- 받는 사람 입력 라벨
-    label(for="receiver") Receiver:
+    label(for="receiver") 수신:
     //- 받는 사람 입력 필드
-    input#receiver(type="text", name="receiver", placeholder="Enter receiver ID", required)
+    input#receiver(type="text", name="receiver", placeholder="상대 아이디디", required)
     br
     br
     //- 채팅방 입장 버튼
-    button(type="submit") Enter Chat Room
+    button(type="submit") 채팅시작
