@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 선택자 및 DOM 탐색</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 초기화 함수 - 모든 스타일 초기화
+            function resetStyles() {
+                $('p, div, ul, li').css({
+                    'color': '', 
+                    'background-color': '',
+                    'border': ''
+                });
+            }
+
+            // .find() - '#container' 내에서 <p> 태그 선택
+            $('#findButton').click(function() {
+                resetStyles(); // 이전 스타일 리셋
+                $('#container').find('p').css({
+                    'color': 'blue',
+                    'background-color': 'lightyellow',
+                    'border': '2px solid blue'
+                });
+            });
+
+            // .children() - '#parent'의 모든 자식 요소 선택
+            $('#childrenButton').click(function() {
+                resetStyles(); // 이전 스타일 리셋
+                $('#parent').children().css({
+                    'color': 'green',
+                    'background-color': 'lightgray',
+                    'border': '2px solid green'
+                });
+            });
+
+            // .parent() - '#child'의 부모 요소 선택
+            $('#parentButton').click(function() {
+                resetStyles(); // 이전 스타일 리셋
+                $('#child').parent().css({
+                    'color': 'red',
+                    'background-color': 'lightblue',
+                    'border': '2px solid red'
+                });
+            });
+
+            // .closest() - '#child'의 가장 가까운 <div> 요소 선택
+            $('#closestButton').click(function() {
+                resetStyles(); // 이전 스타일 리셋
+                $('#child').closest('div').css({
+                    'color': 'purple',
+                    'background-color': 'lightpink',
+                    'border': '2px solid purple'
+                });
+            });
+
+            // .next() - '#first' 요소의 다음 형제 요소 찾기
+            $('#nextButton').click(function() {
+                resetStyles(); // 이전 스타일 리셋
+                $('#first').next().css({
+                    'color': 'orange',
+                    'background-color': 'lightgreen',
+                    'border': '2px solid orange'
+                });
+            });
+
+            // .prev() - '#second' 요소의 이전 형제 요소 찾기
+            $('#prevButton').click(function() {
+                resetStyles(); // 이전 스타일 리셋
+                $('#second').prev().css({
+                    'color': 'brown',
+                    'background-color': 'lightcyan',
+                    'border': '2px solid brown'
+                });
+            });
+
+            // .siblings() - '#second'의 모든 형제 요소 찾기
+            $('#siblingsButton').click(function() {
+                resetStyles(); // 이전 스타일 리셋
+                $('#second').siblings().css({
+                    'color': 'pink',
+                    'background-color': 'lightseagreen',
+                    'border': '2px solid pink'
+                });
+            });
+
+            // .eq() - '#list'의 자식 요소 중 3번째 선택
+            $('#eqButton').click(function() {
+                resetStyles(); // 이전 스타일 리셋
+                $('#list').children().eq(2).css({
+                    'color': 'darkblue',
+                    'background-color': 'lightgoldenrodyellow',
+                    'border': '2px solid darkblue'
+                });
+            });
+
+            // .first() - '#items'의 첫 번째 자식 요소 선택
+            $('#firstButton').click(function() {
+                resetStyles(); // 이전 스타일 리셋
+                $('#items').children().first().css({
+                    'color': 'darkgreen',
+                    'background-color': 'lightcoral',
+                    'border': '2px solid darkgreen'
+                });
+            });
+
+            // .last() - '#items'의 마지막 자식 요소 선택
+            $('#lastButton').click(function() {
+                resetStyles(); // 이전 스타일 리셋
+                $('#items').children().last().css({
+                    'color': 'darkred',
+                    'background-color': 'lightsteelblue',
+                    'border': '2px solid darkred'
+                });
+            });
+
+            // .not() - 클래스가 'active'가 아닌 모든 <li> 요소 선택
+            $('#notButton').click(function() {
+                resetStyles(); // 이전 스타일 리셋
+                $('li').not('.active').css({
+                    'color': 'darkviolet',
+                    'background-color': 'lightyellow',
+                    'border': '2px solid darkviolet'
+                });
+            });
+
+            // .has() - .highlight 클래스를 가진 자식 요소가 있는 #container 선택
+            $('#hasButton').click(function() {
+                resetStyles(); // 이전 스타일 리셋
+                var result = $('#container').has('.highlight').length > 0 ? '있습니다' : '없습니다';
+                $('#container').css({
+                    'color': 'teal',
+                    'background-color': 'lavenderblush',
+                    'border': '2px solid teal'
+                });
+                alert('.highlight 클래스가 있는 자식 요소가 ' + result);
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>jQuery 선택자 및 DOM 탐색 메서드</h1>
+    
+    <div id="container">
+        <p>컨테이너 내부의 첫 번째 <b>p</b> 태그</p>
+        <div id="parent">
+            <p>부모div 요소의 자식 요소 1</p>
+            <p>부모div 요소의 자식 요소 2</p>
+        </div>
+        <div id="child">컨테이너의 자식 요소</div>
+        <!-- .highlight 클래스를 가진 요소 추가 -->
+        <div class="highlight">highlight 클래스가 있는 요소</div>
+    </div>
+
+    <ul id="list">
+        <li>아이템 1</li>
+        <li class="active">아이템 2 (Active)</li>
+        <li>아이템 3</li>
+    </ul>
+
+    <ul id="items">
+        <li id="first">첫 번째 아이템</li>
+        <li id="second">두 번째 아이템</li>
+        <li>세 번째 아이템</li>
+    </ul>
+
+    <button id="findButton">.find() - <b>#container</b> 내에서 <b>p</b> 태그 찾기</button>
+    <button id="childrenButton">.children() - <b>#parent</b>의 모든 자식 요소 찾기</button>
+    <button id="parentButton">.parent() - <b>#child</b>의 부모 요소 찾기</button>
+    <button id="closestButton">.closest() - <b>#child</b>의 가장 가까운 <b>div</b> 요소 찾기</button>
+    <button id="nextButton">.next() - <b>#first</b>의 다음 형제 요소 찾기</button>
+    <button id="prevButton">.prev() - <b>#second</b>의 이전 형제 요소 찾기</button>
+    <button id="siblingsButton">.siblings() - <b>#second</b>의 모든 형제 요소 찾기</button>
+    <button id="eqButton">.eq() - <b>#list</b>에서 3번째 자식 요소 찾기</button>
+    <button id="firstButton">.first() - <b>#items</b>의 첫 번째 자식 요소 찾기</button>
+    <button id="lastButton">.last() - <b>#items</b>의 마지막 자식 요소 찾기</button>
+    <button id="notButton">.not() - 클래스가 'active'가 아닌 모든 <b>li</b> 찾기</button>
+    <button id="hasButton">.has() - 자식 요소에 .highlight 클래스가 있는 <b>#container</b> 찾기</button>
+
+    <hr>
+    <h2>결과</h2>
+    <p id="result">변경된 내용이 여기 표시됩니다.</p>
+</body>
+</html>

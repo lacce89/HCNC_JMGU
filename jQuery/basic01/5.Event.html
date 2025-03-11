@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 이벤트 처리 예시</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // .click() - 클릭 이벤트 처리
+            $('#clickButton').click(function() {
+                alert('클릭됨');
+            });
+
+            // .dblclick() - 더블클릭 이벤트 처리
+            $('#dblclickButton').dblclick(function() {
+                alert('더블클릭됨');
+            });
+
+            // .mouseenter() - 마우스가 요소 위로 들어갈 때 이벤트 처리
+            $('#mouseenterButton').mouseenter(function() {
+                alert('마우스 들어감');
+            });
+
+            // .mouseleave() - 마우스가 요소에서 나갈 때 이벤트 처리
+            $('#mouseleaveButton').mouseleave(function() {
+                alert('마우스 나감');
+            });
+
+            // .mousemove() - 마우스가 요소 위에서 이동할 때 이벤트 처리
+            $('#mousemoveButton').mousemove(function() {
+                alert('마우스 이동');
+            });
+
+            // .keydown() - 키를 눌렀을 때 이벤트 처리
+            $('#keydownInput').keydown(function() {
+                alert('키 눌림');
+            });
+
+            // .keypress() - 키를 눌렀을 때 발생하는 이벤트 처리 (문자 입력)
+            $('#keypressInput').keypress(function() {
+                alert('키 눌림');
+            });
+
+            // .keyup() - 키를 떼었을 때 이벤트 처리
+            $('#keyupInput').keyup(function() {
+                alert('키 뗌');
+            });
+
+            // .focus() - 입력 필드에 포커스가 있을 때
+            $('#focusInput').focus(function() {
+                alert('포커스됨');
+            });
+
+            // .blur() - 입력 필드에서 포커스를 잃었을 때
+            $('#blurInput').blur(function() {
+                alert('포커스 벗어남');
+            });
+
+            // .change() - 셀렉트 박스에서 값이 변경될 때
+            $('#changeSelect').change(function() {
+                alert('선택 변경됨');
+            });
+
+            // .submit() - 폼이 제출될 때
+            $('#formSubmit').submit(function() {
+                alert('폼 제출됨');
+                return false; // 실제 제출을 막기 위한 코드
+            });
+
+            // .on() - 여러 이벤트를 처리할 때 사용
+            $('#onButton').on('click', function() {
+                alert('클릭됨');
+            });
+
+            // .off() - 이벤트 리스너 제거
+            $('#offButton').off('click');
+
+            // .trigger() - 이벤트를 강제로 발생시키기
+            $('#triggerButton').click(function() {
+                $('#onButton').trigger('click');
+            });
+
+            $('#multievent').on('click dblclick', function(event){
+                if (event.type === 'dblclick') {
+                    alert('덥클릭 이벤트1');
+                } else if (event.type === 'click') {
+                    alert('클릭 이벤트');
+                }
+            });
+
+            $('#trigger2').click(function(){
+                $('#multievent').trigger('dblclick');
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <h1>jQuery 이벤트 처리 메서드 예시</h1>
+
+    <div>
+        <button id="clickButton">클릭 - .click()</button>
+        <button id="dblclickButton">더블클릭 - .dblclick()</button>
+        <div id="mouseenterButton" style="width: 200px; height: 50px; background-color: lightblue;">마우스 들어감 - .mouseenter()</div>
+        <div id="mouseleaveButton" style="width: 200px; height: 50px; background-color: lightcoral;">마우스 나감 - .mouseleave()</div>
+        <div id="mousemoveButton" style="width: 200px; height: 50px; background-color: lightgreen;">마우스 이동 - .mousemove()</div>
+
+        <br><br>
+
+        <input type="text" id="keydownInput" placeholder="키 눌림 - .keydown()">
+        <input type="text" id="keypressInput" placeholder="키 눌림 - .keypress()">
+        <input type="text" id="keyupInput" placeholder="키 뗌 - .keyup()">
+        
+        <br><br>
+
+        <input type="text" id="focusInput" placeholder="포커스됨 - .focus()">
+        <input type="text" id="blurInput" placeholder="포커스 벗어남 - .blur()">
+        
+        <br><br>
+
+        <select id="changeSelect">
+            <option>선택1</option>
+            <option>선택2</option>
+            <option>선택3</option>
+        </select>
+
+        <br><br>
+
+        <form id="formSubmit">
+            <input type="text" name="name" placeholder="폼 제출 예시">
+            <button type="submit">폼 제출</button>
+        </form>
+
+        <br><br>
+
+        <button id="onButton">클릭 시 알림 - .on()</button>
+        <button id="offButton">클릭 이벤트 제거 - .off()</button>
+        <button id="triggerButton">강제로 클릭 이벤트 발생 - .trigger()</button>
+
+        <br><br>
+
+        <button id="multievent">클릭 시 여러 이벤트 등록</button>
+        <button id="trigger2">여러 이벤트 중 하나 강제발동</button>
+    </div>
+
+    <div>
+        <p>
+            .click(): 버튼 클릭 시 알림을 보여주는 이벤트 처리 메서드입니다. <br>
+            .dblclick(): 더블클릭 시 알림을 보여주는 이벤트 처리 메서드입니다.<br>
+            .mouseenter(): 마우스가 요소 위로 올라가면 알림을 보여주는 이벤트 처리 메서드입니다.<br>
+            .mouseleave(): 마우스가 요소에서 나가면 알림을 보여주는 이벤트 처리 메서드입니다.<br>
+            .mousemove(): 마우스가 요소 위에서 이동할 때 알림을 보여주는 이벤트 처리 메서드입니다.<br>
+            .keydown(): 키를 눌렀을 때 발생하는 이벤트 처리 메서드입니다. 예를 들어, 텍스트 박스에 키를 누르면 알림을 보여줍니다.<br>
+            .keypress(): 키가 눌릴 때 발생하는 이벤트 처리 메서드입니다. 특히 문자 입력에 유용합니다.<br>
+            .keyup(): 키를 떼었을 때 발생하는 이벤트 처리 메서드입니다. <br>
+            .focus(): 입력 필드에 포커스가 올 때 발생하는 이벤트 처리 메서드입니다. 예를 들어, 텍스트 필드에 클릭하면 알림을 보여줍니다.<br>
+            .blur(): 입력 필드에서 포커스를 잃을 때 발생하는 이벤트 처리 메서드입니다.<br>
+            .change(): 셀렉트 박스에서 선택된 옵션이 변경될 때 발생하는 이벤트 처리 메서드입니다. <br>
+            .submit(): 폼이 제출될 때 발생하는 이벤트 처리 메서드입니다. <br>
+            .on(): 여러 이벤트를 처리할 때 유용한 메서드입니다. 예를 들어, 여러 이벤트를 한번에 처리할 수 있습니다.<br>
+            .off(): 지정한 이벤트 리스너를 제거하는 메서드입니다.<br>
+            .trigger(): 지정한 이벤트를 강제로 발생시키는 메서드입니다.<br>
+        </p>
+    </div>
+</body>
+</html>

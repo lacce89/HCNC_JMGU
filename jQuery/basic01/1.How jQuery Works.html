@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+</head>
+
+<body>
+    <a href="http://jquery.com/">j쿼리 공식 홈페이지</a>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+    $(document).ready(function () {
+        $("a").click(function (event) {
+            alert("The link will no longer take you to jquery.com");
+            event.preventDefault();
+        });
+    });
+    </script>
+</body>
+
+</html>

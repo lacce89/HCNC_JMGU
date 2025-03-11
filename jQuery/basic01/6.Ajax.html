@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery AJAX 예시</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // .ajax() - GET 요청 보내기
+            $('#ajaxButton').click(function () {
+                $.ajax({
+                    url: 'http://localhost:3000/api/ajax',
+                    method: 'GET',
+                    success: function (data) {
+                        console.log(data);
+                        $('#response').text(data.message);
+                    }
+                });
+            });
+
+            // .get() - GET 요청 보내기
+            $('#getButton').click(function () {
+                $.get('http://localhost:3000/api/get', function (data) {
+                    console.log(data);
+                    $('#response').text(data.message);
+                });
+            });
+
+            // .post() - POST 요청 보내기
+            $('#postButton').click(function () {
+                $.ajax({
+                    url: 'http://localhost:3000/api/post',
+                    method: 'POST',
+                    contentType: 'application/json',  // 전송 형식을 JSON으로 설정
+                    data: JSON.stringify({ name: 'John' }),  // 데이터를 JSON 문자열로 변환
+                    success: function (data) {
+                        console.log(data);  // 서버에서 받은 응답
+                        $('#response').text(data.message);  // 응답 메시지 표시
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);  // 오류 메시지 출력
+                    }
+                });
+            });
+
+            // .getJSON() - JSON 데이터 GET 요청 보내기
+            $('#getJsonButton').click(function () {
+                $.getJSON('http://localhost:3000/api/getjson', function (data) {
+                    console.log(data);
+                    $('#response').text('Name: ' + data.name + ', Age: ' + data.age);
+                });
+            });
+
+            // .load() - 서버에서 데이터를 특정 요소에 로드하기
+            $('#loadButton').click(function () {
+                $('#result').load('http://localhost:3000/api/load', function (response, status, xhr) {
+                    if (status == 'success') {
+                        console.log(response);
+                        $('#response').text(response);
+                    } else {
+                        $('#response').text('Error: ' + xhr.status);
+                    }
+                });
+            });
+
+            // .serialize() - 폼 데이터 직렬화하여 전송
+            $('#formButton').click(function () {
+                var data = $('#myForm').serialize();  // 폼 데이터 직렬화
+                console.log(data);
+
+                // JSON 형식으로 전송
+                $.ajax({
+                    url: 'http://localhost:3000/api/serialize',
+                    method: 'POST',
+                    contentType: 'application/json',  // JSON 형식으로 보내는 헤더 추가
+                    data: JSON.stringify({ name: 'John' }),  // JSON으로 변환하여 데이터 전송
+                    success: function (response) {
+                        $('#response').text(response.message);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+
+            // .param() - 쿼리 문자열로 변환하여 데이터 전송
+            $('#paramButton').click(function () {
+                var data = $.param({ name: 'John', age: 30 });
+                console.log(data);
+                $.get('http://localhost:3000/api/param?' + data, function (response) {
+                    $('#response').text(response.message);
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>jQuery AJAX 메서드 예시</h1>
+
+    <button id="ajaxButton">.ajax() - GET 요청</button><br>
+    <button id="getButton">.get() - GET 요청</button><br>
+    <button id="postButton">.post() - POST 요청</button><br>
+    <button id="getJsonButton">.getJSON() - JSON 데이터 요청</button><br>
+    <button id="loadButton">.load() - 파일 데이터 로드</button><br>
+
+    <form id="myForm">
+        <input type="text" name="name" value="John">
+        <button type="button" id="formButton">.serialize() - 폼 데이터 전송</button>
+    </form>
+
+    <button id="paramButton">.param() - 쿼리 문자열 전송</button><br>
+
+    <div id="response"></div>
+    <div id="result"></div>
+</body>
+
+</html>

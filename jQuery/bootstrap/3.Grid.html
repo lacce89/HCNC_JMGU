@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Grid System 예제</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .box {
+            background-color: lightblue;
+            border: 1px solid navy;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-center my-4">📌 Bootstrap Grid System 예제</h1>
+
+        <!-- ✅ 1. 기본 그리드 (자동 컬럼 크기) -->
+        <h2>1️⃣ 기본 그리드 (자동 크기 조절)</h2>
+        <div class="row">
+            <div class="col box">컬럼 1</div>
+            <div class="col box">컬럼 2</div>
+            <div class="col box">컬럼 3</div>
+        </div>
+
+        <!-- ✅ 2. 고정 크기 컬럼 (12칸 중 일부 차지) -->
+        <h2 class="mt-4">2️⃣ 고정 크기 컬럼</h2>
+        <div class="row">
+            <div class="col-6 box">6칸 차지</div>
+            <div class="col-3 box">3칸 차지</div>
+            <div class="col-3 box">3칸 차지</div>
+        </div>
+
+        <!-- ✅ 3. 반응형 컬럼 (화면 크기에 따라 크기 변경) -->
+        <h2 class="mt-4">3️⃣ 반응형 컬럼</h2>
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4 box">반응형 1</div>
+            <div class="col-sm-12 col-md-6 col-lg-4 box">반응형 2</div>
+            <div class="col-sm-12 col-md-6 col-lg-4 box">반응형 3</div>
+        </div>
+
+        <!-- ✅ 4. 가변 크기 (col-auto 사용) -->
+        <h2 class="mt-4">4️⃣ 가변 크기 컬럼</h2>
+        <div class="row">
+            <div class="col box">기본 크기</div>
+            <div class="col-auto box">콘텐츠 크기 자동 조절</div>
+            <div class="col-auto box">기본 크기</div>
+        </div>
+
+        <!-- ✅ 5. 자동 정렬 (row-cols 사용) -->
+        <h2 class="mt-4">5️⃣ 자동 정렬 (row-cols 사용)</h2>
+        <div class="row row-cols-2">
+            <div class="col box">자동 정렬 1</div>
+            <div class="col box">자동 정렬 2</div>
+            <div class="col box">자동 정렬 3</div>
+            <div class="col box">자동 정렬 4</div>
+        </div>
+
+        <!-- ✅ 6. 중첩된 그리드 (Nested Grid) -->
+        <h2 class="mt-4">6️⃣ 중첩된 그리드</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box">부모 컬럼</div>
+                <div class="row mt-2">
+                    <div class="col-6 box">자식 1</div>
+                    <div class="col-6 box">자식 2</div>
+                </div>
+            </div>
+            <div class="col-md-6 box">부모 컬럼 2</div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (필요한 경우) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

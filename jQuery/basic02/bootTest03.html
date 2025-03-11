@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 적용 예제</title>
+
+    <!-- Bootstrap CSS (디자인 적용) -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-primary">Bootstrap 적용 예제</h1>
+        <p class="lead">이 페이지는 Bootstrap을 활용하여 기본적인 UI 요소를 스타일링한 것입니다.</p>
+
+        <!-- 버튼 -->
+        <button class="btn btn-danger">확인</button>
+        <button class="btn btn-warning">취소</button>
+
+        <!-- 테이블 -->
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>이름</th>
+                    <th>이메일</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>홍길동</td>
+                    <td>hong@example.com</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>김철수</td>
+                    <td>kim@example.com</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 모달 버튼 -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal01">
+            모달 열기
+        </button>
+
+        <!-- 모달 창 -->
+        <div class="modal fade" id="modal01" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">모달 제목</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        여기에 모달 내용을 입력하세요.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript (모달, 드롭다운 등의 기능 적용) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

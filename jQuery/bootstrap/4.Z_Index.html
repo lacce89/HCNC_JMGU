@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap z-index 학습</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        /* ✅ 1. 기본 박스 스타일 */
+        .box {
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid navy;
+        }
+
+        /* ✅ 2. z-index 적용 */
+        .z-index-box {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            background-color: rgba(255, 165, 0, 0.7); /* 반투명 오렌지색 */
+            top: 150px;
+            left: 50px;
+            z-index: 1050; /* 기본 모달보다 낮음 */
+        }
+
+        .higher-z-index {
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            background-color: rgba(0, 128, 0, 0.7); /* 반투명 초록색 */
+            top: 180px;
+            left: 100px;
+            z-index: 1070; /* 툴팁과 동일한 레벨 */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ✅ 1. 네비게이션 (z-index: 1030) -->
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">🛠 z-index 학습</a>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                모달 열기
+            </button>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <h1 class="text-center my-4">📌 Bootstrap z-index 예제</h1>
+
+        <!-- ✅ 2. 드롭다운 (z-index: 1000) -->
+        <div class="dropdown my-4">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                드롭다운 열기
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">메뉴 1</a></li>
+                <li><a class="dropdown-item" href="#">메뉴 2</a></li>
+            </ul>
+        </div>
+
+        <!-- ✅ 3. 고정 네비게이션 (sticky-top) -->
+        <div class="sticky-top bg-light p-3 border">
+            🏗️ sticky-top (z-index: 1020)
+        </div>
+
+        <!-- ✅ 4. z-index 비교 박스 -->
+        <div class="position-relative">
+            <div class="z-index-box">🔸 z-index: 1050</div>
+            <div class="higher-z-index">🟢 z-index: 1070</div>
+        </div>
+    </div>
+
+    <!-- ✅ 5. 모달 (z-index: 1055) -->
+    <div class="modal fade" id="exampleModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">🛑 z-index가 가장 높은 모달</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    이 모달은 드롭다운보다 위(z-index: 1055)에서 보입니다.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
